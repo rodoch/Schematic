@@ -96,7 +96,7 @@ On application startup, Schematic canvasses all linked assemblies for public typ
 - `/en-GB/resource/book/read`
 - `/en-GB/resource/book/update`
 - `/en-GB/resource/book/delete`
-- `/en-GB/resource/book/schema` (returns a JSON schema for the resource **[in development]**)
+- `/en-GB/resource/book/schema` (returns a JSON schema for the resource)
 
 The URL template is `<CURRENT-UI-CULTURE>/resource/<RESOURCE-NAME>/<OPTIONAL-ENDPOINT>`.
 
