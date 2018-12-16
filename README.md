@@ -20,6 +20,7 @@ tools already available in .NET Core — like MVC model binding and validation, 
 - [Concepts](#concepts)
   - [Resources](#resources)
   - [Repeatables](#repeatables)
+  - [Contexts](#contexts)
   - [Assets](#assets)
   - [Users](#users)
 - [Roadmap](#roadmap)
@@ -39,13 +40,13 @@ If either of these scenarios sound familiar, then you'll appreciate why Schemati
 All software design decisions are the result of trade-offs and it's also important to be clear about the limitations of any tool. Here are some points to keep in mind as regards Schematic:
 
 - Schematic is concerned with back-end content management *only*. It does not generate front-end templates à la WordPress — it is your responsibility to build any public-facing presentation layer. The assumption here is that if your requirements dictate that you need to build a custom CMS you are likely to find pre-made templating solutions too restrictive. This is also liberating, as Schematic doesn't care how your data will be presented. You can use it to build invoicing software as easily as you can use it for a website backend.
-- For its jumping-off point, Schematic assumes that you plan to use a [domain-driven design](https://en.wikipedia.org/wiki/Domain-driven_design) approach, to a greater or lesser extent, in building your application. This has some implications. For example, by default Schematic enforces a [repository pattern](https://deviq.com/repository-pattern/) to manage your data access logic. It is absolutely possible, and relatively easy, to override these default tendencies by creating your own controllers for particular situations where you need to implement a different approach, but if you think you will mostly be fighting against this pattern then you're not going to see the productivity benefits that Schematic brings as standard.
+- For its jumping-off point, Schematic assumes that you plan to use a [domain-driven design](https://en.wikipedia.org/wiki/Domain-driven_design) approach, to a greater or lesser extent, in building your application. This has some implications. For example, by default Schematic enforces a [repository pattern](https://deviq.com/repository-pattern/) to manage your data access logic. It is absolutely possible, and relatively easy, to override these default patterns by creating your own controllers for particular situations where you need to implement a different approach. However, if you think you will mostly be fighting against the default patterns then you're not going to see the productivity benefits that Schematic brings as standard.
 
 ## Architecture
 
-The Schematic framework is highly modular. The various aspects of the CMS framework are separated into multiple NuGet packages. This makes it easy to maintain and add new features to existing solutions. The main project, which you can clone from this repo, is extremely lightweight. For example, the interfaces that describe user management and authorisation actions are contained in the Schematic.Identity dependency. A controller that implements these actions is contained in Schematic.Core.Mvc and the default views are in Schematic.Core.Razor. A user repositiory implemented in [SQLite](https://www.sqlite.org) is housed in the Schematic.BaseInfrastructure.Sqlite package. When you start up the main project these facilities just work.
+The Schematic framework is highly modular. The various aspects of the CMS framework are separated into multiple NuGet packages. This makes it easy to maintain and add new features to existing solutions. The main project, which you can clone from this repo, is extremely lightweight. For example, the interfaces that describe user management and authorisation actions are contained in the **Schematic.Identity** dependency. A controller that implements these actions is contained in **Schematic.Core.Mvc** and the default views are in **Schematic.Core.Razor**. A user repositiory implemented in [SQLite](https://www.sqlite.org) is housed in the **Schematic.BaseInfrastructure.Sqlite** package. When you start up the main project these facilities just work.
 
-When you wish to implement your own features, it is easy to override the default options. All of the constituent dependcies are made available on an open-source basis for your reference:
+When you wish to implement your own features, it is easy to override the default options. All of the constituent dependencies are made available on an open-source basis for your reference:
 
 | Package/GitHub Repo | NuGet Stable | NuGet Pre-release | Downloads |
 | ------- | ------------ | ----------------- | --------- |
@@ -55,7 +56,7 @@ When you wish to implement your own features, it is easy to override the default
 | [Schematic.Identity](https://github.com/rodoch/Schematic.Identity) | N/A | [![NuGet Pre Release](https://img.shields.io/nuget/vpre/Schematic.Identity.svg)](https://www.nuget.org/packages/Schematic.Identity/) |  [![NuGet](https://img.shields.io/nuget/dt/Schematic.Identity.svg)](https://www.nuget.org/packages/Schematic.Identity/) |
 | [Schematic.BaseInfrastructure](https://github.com/rodoch/Schematic.BaseInfrastructure) | N/A | [![NuGet Pre Release](https://img.shields.io/nuget/vpre/Schematic.BaseInfrastructure.svg)](https://www.nuget.org/packages/Schematic.BaseInfrastructure/) |  [![NuGet](https://img.shields.io/nuget/dt/Schematic.BaseInfrastructure.svg)](https://www.nuget.org/packages/Schematic.BaseInfrastructure/) |
 
-There are also implementation-specific packages. Currently, only a SQLite implementation is provided, but Schematic will also support SQL Server soon:
+There are also implementation-specific packages. Only a SQLite implementation is provided currently, but Schematic will also support SQL Server soon:
 
 | Package/GitHub Repo  | Data store | NuGet Stable | NuGet Pre-release | Downloads |
 | ------- | ------------ | ----------------- | --------- | --------- |
@@ -91,16 +92,15 @@ public class Book
 On application startup, Schematic canvasses all linked assemblies for public types annotated with the `SchematicResource` attribute and automatically creates the following HTTP endpoints:
 
 - `/en-GB/resource/book/` (Explorer view)
-- `/en-GB/resource/book/meta` (returns resource ID and title, if they exist already, along with other metadata **[in development]**)
 - `/en-GB/resource/book/create`
 - `/en-GB/resource/book/read`
 - `/en-GB/resource/book/update`
 - `/en-GB/resource/book/delete`
 - `/en-GB/resource/book/schema` (returns a JSON schema for the resource)
 
-The URL template is `<CURRENT-UI-CULTURE>/resource/<RESOURCE-NAME>/<OPTIONAL-ENDPOINT>`.
+(The URL template is `<CURRENT-UI-CULTURE>/resource/<RESOURCE-NAME>/<OPTIONAL-ENDPOINT>`.)
 
-All you need to then do is write the editor UI using standard MVC practices and aided Schematic's composable web component library, and implement your data persistence logic in a resource repository. Schematic uses its own generic `ResourceController` to generate all of the business logic and CRUD methods for you.
+All you need to then do is write the editor UI using standard MVC practices and aided by Schematic's composable web component library, and implement your data persistence logic in a resource repository. Schematic uses its own generic `ResourceController` to generate the business logic and CRUD methods for you.
 
 There are many more aspects of the **Resource** concept we could discuss, but a final point worth noting for now is that resources can be given additional levels of access protection by use of the `SchematicAuthorize` attribute. This is in addition to the standard user authentication and authorisation that happens when someone signs in to a Schematic-based CMS. In the example below only users granted the *Editor* role within this particular application will have access to the `Book` resource. You get to define the roles and/or priviliges employed by the application.
 
@@ -136,9 +136,13 @@ public class Author
 
 It is possible for a class to be both a **Resource** *and* a **Repeatable**, as in the case of the `Author` type above. This means that it can be used as a repeatable within a *Book* editor but that you can also have a separate interface when you wish to manage the authors in isolation.
 
+### Contexts
+
+Sometimes you need more than just simple CRUD functions or you require more complex validation than can be perfomed using validation attributes alone. **Contexts** offer hooks into the `ResourceController`'s new/create/read/update/delete methods: allowing you to add validation and processing logic to specific resources. Context logic is applied before the resource is persisted to your data store.
+
 ### Assets
 
-An **Asset** represents file metadata. It holds information such as file names, content types and creation dates for the files you upload. In special cases where particular file types need additional metadata, special asset types are derived from the `Asset` base class. For example, the `ImageAsset` class contains all of the standard asset metadata plus image-specific information such as the image width and height.
+An **Asset** represents file metadata. It holds information such as file names, content types and creation dates for the files you upload. In special cases where particular file types need additional metadata, special asset types are derived from the `Asset` base class. For example, the `ImageAsset` class contains all of the standard asset metadata plus image-specific information such as the image width and height. In all standard, supported implementations Schematic creates database tables by default to store this metadata as well as asset controllers to manage the files.
 
 ### Users
 
@@ -152,5 +156,5 @@ This is a very early-stage release of the Schematic CMS framework. Planned devel
 - Better exception handling and error reporting.
 - Unit and integration tests for the various packages.
 - Move towards a more event-driven architecture. Right now, for example, when you create a new user this calls a *Create* action on the user controller which, if successful, then calls a *EmailSender* service that sends the new user an invitation e-mail. It would be better for extensibility purposes if the *Create* action simply raised an event on completion that other services, such as a the e-mail service, could then hook into.
-- Add additional editors: right now, Schematic comes with support for the [Quill](https://quilljs.com/) rich-text editor. It is proposed to add support for the [SimpleMDE](https://simplemde.com/) Markdown editor and [Xonomy](http://www.lexiconista.com/xonomy/) XML editor.
+- Additional editors: right now, Schematic comes with support for the [Quill](https://quilljs.com/) rich-text editor. It is proposed to add support for the [SimpleMDE](https://simplemde.com/) Markdown editor and [Xonomy](http://www.lexiconista.com/xonomy/) XML editor.
 - Test with Entity Framework and generic repositories. To date, all implementations have used handwritten SQL queries and this use case remains untried.
