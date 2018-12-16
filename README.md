@@ -98,7 +98,7 @@ On application startup, Schematic canvasses all linked assemblies for public typ
 - `/en-GB/resource/book/delete`
 - `/en-GB/resource/book/schema` (returns a JSON schema for the resource)
 
-(The URL template is `<CURRENT-UI-CULTURE>/resource/<RESOURCE-NAME>/<OPTIONAL-ENDPOINT>`.)
+(The URL template is `<CURRENT-CULTURE>/resource/<RESOURCE-NAME>/<OPTIONAL-ENDPOINT>`.)
 
 All you need to then do is write the editor UI using standard MVC practices and aided by Schematic's composable web component library, and implement your data persistence logic in a resource repository. Schematic uses its own generic `ResourceController` to generate the business logic and CRUD methods for you.
 
