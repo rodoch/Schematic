@@ -152,6 +152,7 @@ An easily-understood concept, a **User** represents a person who uses your Schem
 
 This is a very early-stage release of the Schematic CMS framework. Planned development over the coming months include:
 
+- Sample projects and step-by-step documentation
 - A major rewrite of the UI components to improve design and user/developer experience. While the C# code has already been refactored numerous times and the API is quite stable, the UI has not yet been refined to the same extent.
 - Better exception handling and error reporting.
 - Unit and integration tests for the various packages.
