@@ -21,6 +21,7 @@ tools already available in .NET Core — like MVC model binding and validation, 
   - [Resources](#resources)
   - [Repeatables](#repeatables)
   - [Contexts](#contexts)
+  - [Effects](#effects)
   - [Assets](#assets)
   - [Users](#users)
 - [Roadmap](#roadmap)
@@ -142,7 +143,7 @@ Sometimes you need more than just simple CRUD functions or you require more comp
 
 ### Effects
 
-Both **Contexts** (see above) and **Effects** are types of event handlers. Context events are dispatched before resources are persisted to the data store and allow you to return a modified resource model to the controller. **Effects** fire in response to post-persistence events, and allow you to implement any number of actions that occur in response to resource creation or modification. For example, you could use an Effect to send an e-mail alert to particular users every time a resource of a particular type was updated or to perform certain actions in response to a resource deletion.
+Both **Contexts** (see above) and **Effects** are types of event handlers. Context events are dispatched before resources are persisted to the data store and allow you to return a modified resource model to the controller. **Effects** fire in response to post-persistence events, and allow you to implement any number of actions that occur in response to resource creation or modification. For example, you could use an Effect to send an e-mail alert to particular users every time a resource of a particular type was updated or to perform certain actions in response to a resource deletion. As the name implies, such actions are meant to encapsulate the side- or after-effects of resource-lifetime operations.
 
 ### Assets
 
