@@ -140,9 +140,13 @@ It is possible for a class to be both a **Resource** *and* a **Repeatable**, as 
 
 Sometimes you need more than just simple CRUD functions or you require more complex validation than can be perfomed using validation attributes alone. **Contexts** offer hooks into the `ResourceController`'s new/create/read/update/delete methods: allowing you to add validation and processing logic to specific resources. Context logic is applied before the resource is persisted to your data store.
 
+### Effects
+
+Both **Contexts** (see above) and **Effects** are types of event handlers. Context events are dispatched before resources are persisted to the data store and allow you to return a modified resource model to the controller. **Effects** fire in response to post-persistence events, and allow you to implement any number of actions that occur in response to resource creation or modification. For example, you could use an Effect to send an e-mail alert to particular users every time a resource of a particular type was updated or to perform certain actions in response to a resource deletion.
+
 ### Assets
 
-An **Asset** represents file metadata. It holds information such as file names, content types and creation dates for the files you upload. In special cases where particular file types need additional metadata, special asset types are derived from the `Asset` base class. For example, the `ImageAsset` class contains all of the standard asset metadata plus image-specific information such as the image width and height. In all standard, supported implementations Schematic creates database tables by default to store this metadata as well as asset controllers to manage the files.
+An **Asset** represents file metadata. It holds information such as filenames, content types and creation dates for the files you upload. In special cases where particular file types need additional metadata, special asset types are derived from the `Asset` base class. For example, the `ImageAsset` class contains all of the standard asset metadata plus image-specific information such as the image width and height. In all standard supported implementations Schematic creates database tables by default to store this metadata as well as asset controllers to manage the files.
 
 ### Users
 
@@ -156,6 +160,5 @@ This is a very early-stage release of the Schematic CMS framework. Planned devel
 - A major rewrite of the UI components to improve design and user/developer experience. While the C# code has already been refactored numerous times and the API is quite stable, the UI has not yet been refined to the same extent.
 - Better exception handling and error reporting.
 - Unit and integration tests for the various packages.
-- Move towards a more event-driven architecture. Right now, for example, when you create a new user this calls a *Create* action on the user controller which, if successful, then calls an *EmailSenderService* that sends the new user an invitation e-mail. It would be better for extensibility purposes if the *Create* action simply raised an event on completion that other services, such as a the e-mail service, could then hook into.
 - Additional editors: right now, Schematic comes with support for the [Quill](https://quilljs.com/) rich-text editor. It is proposed to add support for the [SimpleMDE](https://simplemde.com/) Markdown editor and [Xonomy](http://www.lexiconista.com/xonomy/) XML editor.
 - Test with Entity Framework and generic repositories. To date, all implementations have used handwritten SQL queries and this use case remains untried.
