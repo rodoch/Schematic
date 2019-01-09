@@ -1,0 +1,10 @@
+.resource-button--delete {
+    display: none;
+}
+
+.resource-editor--read,
+.resource-editor--update {
+    .resource-button--delete {
+        display: inline-block;
+    }
+}

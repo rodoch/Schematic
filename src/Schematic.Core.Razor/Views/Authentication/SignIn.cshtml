@@ -1,0 +1,21 @@
+﻿@using Schematic.Core
+@model SignInViewModel
+@inject IViewLocalizer L
+
+<form class="sign-in-form" slot="form" asp-controller="Authentication" asp-action="SignIn" method="post">
+    <partial name="_ValidationSummaryPartial" view-data="ViewData" />
+    <label asp-for="Email"></label>
+    <input asp-for="Email" value="@ViewData["Email"]" />
+    <label asp-for="Password"></label>
+    <input asp-for="Password" value="" />
+    <div class="sign-in__remember-me">
+        <input class="checkbox" asp-for="RememberMe" type="checkbox" />
+        <label class="checkbox" asp-for="RememberMe"></label>
+    </div>
+    <div class="sign-in__submit">
+        <button type="submit" id="sign-in__button" class="resource-button resource-button--primary sign-in__button">
+            @L["Sign in"]
+        </button>
+    </div>
+    @Html.AntiForgeryToken()
+</form>

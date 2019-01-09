@@ -1,0 +1,11 @@
+.resource-button--new {
+    display: none;
+}
+
+.resource-editor--default,
+.resource-editor--read,
+.resource-editor--update {
+    .resource-button--new {
+        display: inline-block;
+    }
+}

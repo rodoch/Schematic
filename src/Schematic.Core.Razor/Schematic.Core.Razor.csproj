@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Schematic.Core.Razor</PackageId>
+    <PackageTags>schematic;cms;razor;views</PackageTags>
+    <Version>0.1.12</Version>
+    <Authors>Ronan Doherty</Authors>
+    <Company>Ronan Doherty</Company>
+    <Description>Razor class library for the Schematic CMS framework</Description>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/rodoch/Schematic.Core.Razor/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/rodoch/Schematic.Core.Razor/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/rodoch/Schematic.Core.Razor/</RepositoryUrl>
+    <PackageReleaseNotes>Prerelease</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Gaois.Localizer" Version="0.6.6-alpha" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="2.1.1" />
+    <PackageReference Include="Schematic.Core.Mvc" Version="0.1.24" />
+  </ItemGroup>
+</Project>

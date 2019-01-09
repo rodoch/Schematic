@@ -1,0 +1,73 @@
+﻿@using Schematic.Core
+@model AuthenticationViewModel
+@inject IOptionsMonitor<SchematicSettings> Settings
+@inject IViewLocalizer L
+
+<!DOCTYPE html>
+<html class="no-js" lang="@ViewData["UiLocale"]">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="preconnect" href="https://ajax.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <title>@Settings.CurrentValue.ApplicationName</title>
+    <meta name="description" content="@L[Settings.CurrentValue.ApplicationDescription]">
+
+    <link rel="stylesheet" href="~/css/schematic.css" />
+    <style>
+        .sign-in { background-image:url("@(Url.Content("~/images/sign-in-background.svg"))"); }
+    </style>
+
+    <script src="~/js/modernizr.js" inline></script>
+    <script src="~/js/webcomponents-sd-ce.js"></script>
+    <script src="https://unpkg.com/popmotion/dist/popmotion.global.min.js"></script>
+
+    <environment include="Development">
+        <script src="~/schematic/build/schematic.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/schematic/dist/schematic.js"></script>
+    </environment>
+</head>
+<body class="sign-in" style="">
+    <nav class="sign-in__language-switcher">
+        <schematic-language-switcher>
+            @foreach (var culture in LocOptions.Value.SupportedUICultures) 
+            {
+                <schematic-language-button base="@Url.Content("~/")" code="@culture.Name" 
+                    text="@(culture.Name == ViewData["UiLocale"].ToString() ? culture.Name.ToUpper() : culture.NativeName)" 
+                    slot="@(culture.Name == ViewData["UiLocale"].ToString() ? "current" : "list")">
+                </schematic-language-button>
+            }
+        </schematic-language-switcher>
+    </nav>
+    <main id="main" class="sign-in__main">
+        <header class="sign-in__header">
+            @if (Settings.CurrentValue.ApplicationIcon != null)
+            {
+                <a href="@Url.Content("~/" + @ViewData["UiLocale"] + "/")">
+                    <img class="sign-in__application-icon" 
+                        src="@Url.Content("~" + @Settings.CurrentValue.ApplicationIcon.Path)"
+                        height="@Settings.CurrentValue.ApplicationIcon.Height"
+                        width="@Settings.CurrentValue.ApplicationIcon.Width"
+                        alt="@Settings.CurrentValue.ApplicationName" />
+                </a>
+            }
+            else
+            {
+                <h1 class="sign-in__heading">@Settings.CurrentValue.ApplicationName</h1>
+            }
+        </header>
+        <schematic-sign-in url="@Url.Content("~/" + @ViewData["UiLocale"] + "/in/")"
+            mode="@Model.Mode"
+            token="@Model.Token"
+            forgot="@L["Forgot my password"]"
+            return="@L["Sign in to your account"]">
+        </schematic-sign-in>
+    </main>
+</body>
+</html>

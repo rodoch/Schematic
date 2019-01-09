@@ -1,0 +1,56 @@
+/*.loading-content--hidden {
+    display: none;
+}
+
+.loading-body {
+    --pink: #FF1C68;
+    --green: #14D790;
+    --blue: #198FE3;
+    --black: #21282D;
+    --purple: #9B65DE;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pen {
+    flex: 1 1 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 0 auto;
+    flex: 1 1 100%;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.balls {
+    display: flex;
+    align-items: stretch;
+    height: 75px;
+    position: relative;
+
+    .ball {
+        background: var(--purple);
+        border-radius: 50%;
+        margin-right: 15px;
+        flex: 0 0 75px;
+
+        &:nth-child(4n + 2) {
+            background: var(--green);
+        }
+
+        &:nth-child(4n + 3) {
+            background: var(--pink);
+        }
+
+        &:nth-child(4n + 4) {
+            background: var(--blue);
+        }
+    }
+}*/

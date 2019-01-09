@@ -1,0 +1,10 @@
+.resource-button--save {
+    display: none;
+}
+
+.resource-editor--read,
+.resource-editor--update {
+    .resource-button--save {
+        display: inline-block;
+    }
+}

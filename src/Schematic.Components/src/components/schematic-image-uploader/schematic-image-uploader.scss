@@ -1,0 +1,33 @@
+.resource-uploader__image-panel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.6rem;
+}
+
+.resource-uploader__image {
+    align-self: flex-start;
+    max-width: 45%;
+}
+
+.resource-uploader__image-controls {
+    align-self: flex-start;
+}
+
+.resource-uploader__image-delete-button {
+    align-self: flex-start;
+    background-color: hsla(214, 61%, 25%, 0.05);
+    color: hsl(3, 100%, 61%);
+
+    &:hover, &:focus {
+        background-color: hsla(214, 57%, 24%, 0.1);
+        color: hsl(3, 100%, 61%);
+    }
+}
+
+.resource-uploader__slot-contents {
+    margin-bottom: 1.6rem;
+}
+
+.resource-uploader__slot-contents--hidden {
+    display: none;
+}

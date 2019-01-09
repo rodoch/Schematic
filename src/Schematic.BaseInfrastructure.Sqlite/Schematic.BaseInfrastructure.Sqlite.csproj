@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Schematic.BaseInfrastructure.Sqlite</PackageId>
+    <PackageTags>schematic;cms;infrastructure;sqlite</PackageTags>
+    <Version>0.1.20</Version>
+    <Authors>Ronan Doherty</Authors>
+    <Company>Ronan Doherty</Company>
+    <Description>Sqlite implementation of Schematic CMS framework infrastructure</Description>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/rodoch/Schematic.BaseInfrastructure.Sqlite/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/rodoch/Schematic.BaseInfrastructure.Sqlite/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/rodoch/Schematic.BaseInfrastructure.Sqlite/</RepositoryUrl>
+    <PackageReleaseNotes>Prerelease</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Schematic.Core" Version="0.1.20" />
+    <PackageReference Include="Schematic.Identity" Version="0.1.7" />
+  </ItemGroup>
+
+</Project>

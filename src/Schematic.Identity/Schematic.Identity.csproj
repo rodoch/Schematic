@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Schematic.Identity</PackageId>
+    <PackageTags>schematic;cms;identity</PackageTags>
+    <Version>0.1.7</Version>
+    <Authors>Ronan Doherty</Authors>
+    <Company>Ronan Doherty</Company>
+    <Description>User authentication and management for the Schematic CMS framework</Description>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/rodoch/Schematic.Identity/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/rodoch/Schematic.Identity/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/rodoch/Schematic.Identity/</RepositoryUrl>
+    <PackageReleaseNotes>Prerelease</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="2.1.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>

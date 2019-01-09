@@ -1,0 +1,9 @@
+.resource-button--create {
+    display: none;
+}
+
+.resource-editor--create {
+    .resource-button--create {
+        display: inline-block;
+    }
+}

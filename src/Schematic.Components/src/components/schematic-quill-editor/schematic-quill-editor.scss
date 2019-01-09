@@ -1,0 +1,56 @@
+
+@import "~quill/dist/quill.snow.css";
+
+.ql-container {
+    margin-bottom: 1rem;
+}
+
+.ql-snow {
+    .ql-picker.ql-header {
+        width: 130px;
+    }
+
+    .ql-editor a {
+        &::hover {
+            cursor: pointer;
+        }
+    }
+
+    .ql-editor p, .ql-editor ol, .ql-editor ul, .ql-editor pre, .ql-editor blockquote {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+    }
+    
+    .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+        margin-bottom: 0.8rem;
+    }
+
+    .ql-editor h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .ql-editor h2 {
+        font-size: 1.35rem;
+    }
+
+    .ql-editor h3 {
+        font-size: 1.25rem;
+    }
+
+    .ql-editor h4 {
+        font-size: 1.1rem;
+    }
+
+    .ql-editor h5, .ql-editor h6 {
+        font-size: 1rem;
+    }
+}
+
+.ql-snow {
+    .ql-editor img {
+        display: block;
+        max-width: 70%;
+        margin: 1rem auto 1.6rem auto;
+    }
+}

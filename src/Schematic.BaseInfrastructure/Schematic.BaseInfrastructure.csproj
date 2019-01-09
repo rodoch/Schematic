@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Schematic.BaseInfrastructure</PackageId>
+    <PackageTags>schematic;cms;email</PackageTags>
+    <Version>0.1.9</Version>
+    <Authors>Ronan Doherty</Authors>
+    <Company>Ronan Doherty</Company>
+    <Description>Base infrastructure services for the Schematic CMS framework</Description>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>https://github.com/rodoch/Schematic.BaseInfrastructure/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/rodoch/Schematic.BaseInfrastructure/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/rodoch/Schematic.BaseInfrastructure/</RepositoryUrl>
+    <PackageReleaseNotes>Prerelease</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Gaois.Localizer" Version="0.6.6-alpha" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Schematic.Core" Version="0.1.20" />
+    <PackageReference Include="Schematic.Identity" Version="0.1.7" />
+  </ItemGroup>
+
+</Project>
