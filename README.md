@@ -139,7 +139,7 @@ It is possible for a class to be both a **Resource** *and* a **Repeatable**, as 
 
 ### Contexts
 
-Sometimes you need more than just simple CRUD functions or you require more complex validation than can be perfomed using validation attributes alone. **Contexts** offer hooks into the `ResourceController`'s new/create/read/update/delete methods: allowing you to add validation and processing logic to specific resources. Context logic is applied before the resource is persisted to your data store.
+Sometimes you need more than just simple CRUD functions or you require more complex validation than can be perfomed using validation attributes alone. **Contexts** offer hooks into the `ResourceController`'s new/create/read/update/delete methods: allowing you to add complex validation and processing logic to specific resources. Context logic is applied before the resource is persisted to your data store.
 
 ### Effects
 
