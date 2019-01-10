@@ -22,6 +22,12 @@ namespace Schematic.Core.Mvc
             eventId: 1002,
             formatString: "Resource updated. Type: {type}. ID: {id}."
         );
+        
+        private static Action<ILogger, string, Exception> _logResourceOrdered = LoggerMessage.Define<string>(
+            logLevel: LogLevel.Information,
+            eventId: 1003,
+            formatString: "Resource ordered. Type: {type}."
+        );
 
         public static void LogResourceCreated(this ILogger logger, Type type, int id) => 
             _logResourceCreated(logger, type.Name, id, null);
@@ -31,5 +37,8 @@ namespace Schematic.Core.Mvc
 
         public static void LogResourceUpdated(this ILogger logger, Type type, int id) => 
             _logResourceUpdated(logger, type.Name, id, null);
+
+        public static void LogResourceOrdered(this ILogger logger, Type type) => 
+            _logResourceOrdered(logger, type.Name, null);
     }
 }

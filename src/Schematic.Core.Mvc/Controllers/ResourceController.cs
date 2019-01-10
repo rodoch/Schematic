@@ -16,7 +16,7 @@ namespace Schematic.Core.Mvc
 {
     [Route("{culture}/resource/[controller]")]
     [Authorize]
-    public class ResourceController<TResource, TFilter> : Controller 
+    public class ResourceController<TResource, TFilter> : Controller
         where TResource : class, new()
         where TFilter : IResourceFilter<TResource>, new()
     {

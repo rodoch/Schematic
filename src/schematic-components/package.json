@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@intl/core": "0.0.1-beta.0",
+    "@shopify/draggable": "^1.0.0-beta.8",
     "@stencil/state-tunnel": "0.0.7",
     "@types/quill": "^2.0.1",
     "@uppy/core": "^0.27.3",

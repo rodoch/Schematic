@@ -1,0 +1,288 @@
+//@import '../../global/variables.css';
+:root {
+    --button-shadow: 0 8px 16px rgba(0,0,0,.1), 0 3px 6px rgba(0,0,0,.08);
+    --button-shadow-hover: 0 4px 6px rgba(0,0,0,.12), 0 1px 3px rgba(0,0,0,.08);
+    --hem: 16px;
+    --modal-padding: 0.5rem;
+    --primary-color: #5851ff;
+    --radio-checked-color: #3E64E8;
+}
+//@import '../../global/buttons.css';
+.button {
+    transition: all .15s ease;
+    text-decoration: none;
+    background: #fff;
+    border: none;
+    outline: 0;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #333;
+    padding: calc(var(--hem) * 0.8) var(--hem);
+    border-radius: 2px;
+    letter-spacing: .04em;
+    box-shadow: var(--button-shadow);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: calc(var(--hem) * 1.2);
+}
+
+.button:hover, .button:focus {
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    transform: translateY(1px);
+    box-shadow: var(--button-shadow-hover);
+}
+
+.button--primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.button--primary:hover, .button--primary:focus {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+$header-bar-height: calc(var(--hem) * 2.8);
+$link-color: #0634a4;
+
+.gaois-modal-background {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  height: 100%;
+  max-height: 100vh;
+  max-width: 100vw;
+  outline: none;
+  position: fixed;
+  -webkit-tap-highlight-color: transparent;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.25);
+  z-index: 500;
+
+  * {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", "Avenir", "Segoe UI", "Lucida Grande", "Helvetica Neue", "Helvetica", "Fira Sans", "Roboto", "Noto", "Droid Sans", "Cantarell", "Oxygen", "Ubuntu", "Franklin Gothic Medium", "Century Gothic", "Liberation Sans", sans-serif;
+  }
+
+  p {
+    margin: 0.8em 0 var(--hem) 0;
+  }
+}
+
+.gaois-modal {
+  max-height: 100%;
+  max-width: 100%;
+  overscroll-behavior: contain;
+  pointer-events: initial;
+  position: relative;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 var(--hem) calc(var(--hem) * 2) rgba(37, 55, 134, 0.3);
+  margin: calc(var(--hem) / 2);
+  margin: calc(#{var(--modal-padding)} * 2);
+  overflow: auto;
+
+  h2 {
+    font-size: calc(var(--hem) * 1.3);
+  }
+
+  a {
+    color: $link-color;
+  }
+
+  p {
+    line-height: 1.35;
+  }
+}
+
+.gaois-modal__header {
+  padding: var(--modal-padding);
+  border-bottom: 1px solid #ddd;
+  box-shadow: none;
+}
+
+.gaois-modal__heading {
+  max-width: 500px;
+  font-size: calc(var(--hem) * 1.4);
+  font-weight: 700;
+  padding: var(--modal-padding);
+  margin: 0 auto calc(var(--hem) / 2) auto;
+}
+
+.gaois-modal__header-instructions {
+    padding: 0 var(--hem);
+    margin-top: 3.8rem !important;
+    max-width: 420px;
+}
+
+.gaois-modal__header-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: flex-end;
+  height: $header-bar-height;
+  width: 100%;
+  background-color: #f0f2f3;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.gaois-modal__close-button {
+  position: relative;
+  float: right;
+  font-size: var(--hem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #444;
+  background-color: #f0f2f3;
+  border: 0;
+  padding: 0 calc(var(--hem) / 2) 0 calc(var(--hem) * 1.75);
+  margin: var(--modal-padding);
+
+  &:hover, &:focus {
+    color: #222;
+    background-color: #f0f2f3;
+  }
+
+  &::before {
+    content: 'X';
+    position: absolute;
+    top: calc(var(--hem) * 0.4);
+    left: calc(var(--hem) * 0.7);
+    font-size: calc(var(--hem) * 0.9);
+    color: #444;
+    line-height: inherit;
+  }
+}
+
+.gaois-modal__logo {
+  height: auto;
+  width: 100%;
+  text-align: center;
+  margin-top: calc((var(--hem) * 2.8) + var(--modal-padding)); // IE11 does not allow calc inside calc()
+}
+
+.gaois-modal__logo-image {
+  width: 40%;
+  padding: calc(var(--modal-padding) / 2);
+
+  @media screen and (max-width: 525px) {
+    width: 60%;
+  }
+}
+
+.gaois-modal__content {
+  min-width: 400px;
+  max-width: 500px;
+  padding: var(--hem) calc(var(--hem) * 1.5);
+  margin: 0 auto;
+
+  .loading {
+      font-size: 0.9rem;
+      height: 200px;
+      margin-top: 4rem;
+  }
+
+  .resource-list {
+      border-top: 1px solid #c8c8c8;
+      border-bottom: 0;
+      height: auto;
+      text-align: left;
+
+      li {
+        color: #4f49e5;
+        padding: 0.2rem 0.5rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &.draggable-mirror {
+            width: inherit;
+        }
+      }
+  }
+}
+
+.gaois-modal__question {
+  font-size: calc(var(--hem) * 1.05);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.gaois-modal__additional-info {
+  display: block;
+}
+
+.gaois-modal__additional-info-label {
+  font-size: calc(var(--hem) * 0.9);
+}
+
+.gaois-modal__link-button {
+  display: block;
+  cursor: pointer;
+  background: #fff;
+  font-size: calc(var(--hem) * 0.9);
+  font-weight: 400;
+  color: $link-color;
+  padding: 0;
+  border: 0;
+  margin: calc(var(--hem) * 0.2) auto var(--hem) auto;
+
+  &:hover, &:focus {
+    color: $link-color;
+    text-decoration: underline;
+    background: #fff;
+  }
+}
+
+.gaois-modal__additional-info-textarea {
+  display: block;
+  height: calc(var(--hem) * 5);
+  width: 100%;
+  margin-top: calc(var(--hem) * 0.25);
+}
+
+.gaois-modal__controls {
+  margin: var(--hem) 0;
+
+  .button:first-of-type {
+    margin-right: calc(var(--hem) * 0.5);
+  }
+}
+
+.gaois-modal__refuse-future-messages {
+  display: block;
+  margin: var(--hem) auto 0 auto;
+}
+
+.gaois-modal__footer {
+  font-size: calc(var(--hem) * 0.8);
+  padding: 0 var(--modal-padding) calc(var(--modal-padding) / 2) var(--modal-padding);
+  border-top: 1px solid #ddd;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .button {
+    margin-top: calc(var(--hem) * 1.2);
+  }
+
+  .button:first-of-type {
+    margin-right: calc(var(--hem) * 0.5);
+  }
+}

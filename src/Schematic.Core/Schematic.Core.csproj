@@ -5,15 +5,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Schematic.Core</PackageId>
     <PackageTags>schematic;cms</PackageTags>
-    <Version>0.1.20</Version>
+    <Version>0.1.21</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Core entities, interfaces and settings for the Schematic CMS framework</Description>
     <RepositoryType>Git</RepositoryType>
-    <RepositoryUrl>https://github.com/rodoch/Schematic.Core/</RepositoryUrl>
+    <RepositoryUrl>https://github.com/rodoch/Schematic/</RepositoryUrl>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>https://github.com/rodoch/Schematic.Core/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/rodoch/Schematic.Core/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/rodoch/Schematic/tree/master/src/Schematic.Core/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/rodoch/Schematic/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>Prerelease</PackageReleaseNotes>
   </PropertyGroup>
 

@@ -1,17 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Schematic.Core
 {
-    public class ResourceModel<T>
+    public class ResourceOrderModel<T>
     {
-        public ResourceModel()
-        {
-            _errors = new List<KeyValuePair<string, string>>();
-        }
+        public List<T> Resources { get; set; }
 
-        public int ID { get; set; }
-
-        public T Resource { get; set; }
+        public IDictionary<int, int> ResourceOrder { get; set; }
 
         private string _facets;
         public string Facets
@@ -27,7 +23,10 @@ namespace Schematic.Core
         public Dictionary<string, string> FacetDictionary { get; set; }
 
         private List<KeyValuePair<string, string>> _errors { get; set; }
-        public IEnumerable<KeyValuePair<string, string>> Errors { get => _errors; }
+        public IEnumerable<KeyValuePair<string, string>> Errors 
+        { 
+            get => _errors ?? new List<KeyValuePair<string, string>>(); 
+        }
 
         protected void UpdateFacetDictionary()
         {

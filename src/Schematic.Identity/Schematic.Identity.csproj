@@ -5,14 +5,15 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Schematic.Identity</PackageId>
     <PackageTags>schematic;cms;identity</PackageTags>
-    <Version>0.1.7</Version>
+    <Version>0.1.8</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>User authentication and management for the Schematic CMS framework</Description>
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/rodoch/Schematic/</RepositoryUrl>
     <PackageIconUrl></PackageIconUrl>
-    <PackageProjectUrl>https://github.com/rodoch/Schematic.Identity/</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/rodoch/Schematic.Identity/blob/master/LICENSE</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/rodoch/Schematic.Identity/</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/rodoch/Schematic/tree/master/src/Schematic.Identity/</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/rodoch/Schematic/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>Prerelease</PackageReleaseNotes>
   </PropertyGroup>
 

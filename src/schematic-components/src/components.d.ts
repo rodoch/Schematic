@@ -175,6 +175,16 @@ export namespace Components {
     'onGetNewResource'?: (event: CustomEvent) => void;
   }
 
+  interface SchematicResourceButtonOrder {
+    'completed': string;
+    'inProgress': string;
+  }
+  interface SchematicResourceButtonOrderAttributes extends StencilHTMLAttributes {
+    'completed'?: string;
+    'inProgress'?: string;
+    'onOrderResources'?: (event: CustomEvent) => void;
+  }
+
   interface SchematicResourceButtonSave {
     'completed': string;
     'inProgress': string;
@@ -297,6 +307,19 @@ export namespace Components {
   interface SchematicResourceNavigatorAttributes extends StencilHTMLAttributes {
     'hasFilters'?: boolean;
     'hasSearch'?: boolean;
+  }
+
+  interface SchematicResourceOrder {
+    'culture': string;
+    'facets': string;
+    'url': string;
+  }
+  interface SchematicResourceOrderAttributes extends StencilHTMLAttributes {
+    'culture'?: string;
+    'facets'?: string;
+    'onResourceOrderClose'?: (event: CustomEvent) => void;
+    'onResourceOrderSubmit'?: (event: CustomEvent) => void;
+    'url'?: string;
   }
 
   interface SchematicResourceRepeaterDelete {}
@@ -445,6 +468,7 @@ declare global {
     'SchematicResourceButtonCreate': Components.SchematicResourceButtonCreate;
     'SchematicResourceButtonDelete': Components.SchematicResourceButtonDelete;
     'SchematicResourceButtonNew': Components.SchematicResourceButtonNew;
+    'SchematicResourceButtonOrder': Components.SchematicResourceButtonOrder;
     'SchematicResourceButtonSave': Components.SchematicResourceButtonSave;
     'SchematicResourceEditorStatus': Components.SchematicResourceEditorStatus;
     'SchematicResourceEditorToolbar': Components.SchematicResourceEditorToolbar;
@@ -455,6 +479,7 @@ declare global {
     'SchematicResourceListLink': Components.SchematicResourceListLink;
     'SchematicResourceList': Components.SchematicResourceList;
     'SchematicResourceNavigator': Components.SchematicResourceNavigator;
+    'SchematicResourceOrder': Components.SchematicResourceOrder;
     'SchematicResourceRepeaterDelete': Components.SchematicResourceRepeaterDelete;
     'SchematicResourceRepeatable': Components.SchematicResourceRepeatable;
     'SchematicResourceRepeaterButton': Components.SchematicResourceRepeaterButton;
@@ -481,6 +506,7 @@ declare global {
     'schematic-resource-button-create': Components.SchematicResourceButtonCreateAttributes;
     'schematic-resource-button-delete': Components.SchematicResourceButtonDeleteAttributes;
     'schematic-resource-button-new': Components.SchematicResourceButtonNewAttributes;
+    'schematic-resource-button-order': Components.SchematicResourceButtonOrderAttributes;
     'schematic-resource-button-save': Components.SchematicResourceButtonSaveAttributes;
     'schematic-resource-editor-status': Components.SchematicResourceEditorStatusAttributes;
     'schematic-resource-editor-toolbar': Components.SchematicResourceEditorToolbarAttributes;
@@ -491,6 +517,7 @@ declare global {
     'schematic-resource-list-link': Components.SchematicResourceListLinkAttributes;
     'schematic-resource-list': Components.SchematicResourceListAttributes;
     'schematic-resource-navigator': Components.SchematicResourceNavigatorAttributes;
+    'schematic-resource-order': Components.SchematicResourceOrderAttributes;
     'schematic-resource-repeater-delete': Components.SchematicResourceRepeaterDeleteAttributes;
     'schematic-resource-repeatable': Components.SchematicResourceRepeatableAttributes;
     'schematic-resource-repeater-button': Components.SchematicResourceRepeaterButtonAttributes;
@@ -567,6 +594,12 @@ declare global {
     new (): HTMLSchematicResourceButtonNewElement;
   };
 
+  interface HTMLSchematicResourceButtonOrderElement extends Components.SchematicResourceButtonOrder, HTMLStencilElement {}
+  var HTMLSchematicResourceButtonOrderElement: {
+    prototype: HTMLSchematicResourceButtonOrderElement;
+    new (): HTMLSchematicResourceButtonOrderElement;
+  };
+
   interface HTMLSchematicResourceButtonSaveElement extends Components.SchematicResourceButtonSave, HTMLStencilElement {}
   var HTMLSchematicResourceButtonSaveElement: {
     prototype: HTMLSchematicResourceButtonSaveElement;
@@ -625,6 +658,12 @@ declare global {
   var HTMLSchematicResourceNavigatorElement: {
     prototype: HTMLSchematicResourceNavigatorElement;
     new (): HTMLSchematicResourceNavigatorElement;
+  };
+
+  interface HTMLSchematicResourceOrderElement extends Components.SchematicResourceOrder, HTMLStencilElement {}
+  var HTMLSchematicResourceOrderElement: {
+    prototype: HTMLSchematicResourceOrderElement;
+    new (): HTMLSchematicResourceOrderElement;
   };
 
   interface HTMLSchematicResourceRepeaterDeleteElement extends Components.SchematicResourceRepeaterDelete, HTMLStencilElement {}
@@ -716,6 +755,7 @@ declare global {
     'schematic-resource-button-create': HTMLSchematicResourceButtonCreateElement
     'schematic-resource-button-delete': HTMLSchematicResourceButtonDeleteElement
     'schematic-resource-button-new': HTMLSchematicResourceButtonNewElement
+    'schematic-resource-button-order': HTMLSchematicResourceButtonOrderElement
     'schematic-resource-button-save': HTMLSchematicResourceButtonSaveElement
     'schematic-resource-editor-status': HTMLSchematicResourceEditorStatusElement
     'schematic-resource-editor-toolbar': HTMLSchematicResourceEditorToolbarElement
@@ -726,6 +766,7 @@ declare global {
     'schematic-resource-list-link': HTMLSchematicResourceListLinkElement
     'schematic-resource-list': HTMLSchematicResourceListElement
     'schematic-resource-navigator': HTMLSchematicResourceNavigatorElement
+    'schematic-resource-order': HTMLSchematicResourceOrderElement
     'schematic-resource-repeater-delete': HTMLSchematicResourceRepeaterDeleteElement
     'schematic-resource-repeatable': HTMLSchematicResourceRepeatableElement
     'schematic-resource-repeater-button': HTMLSchematicResourceRepeaterButtonElement
@@ -752,6 +793,7 @@ declare global {
     'schematic-resource-button-create': HTMLSchematicResourceButtonCreateElement;
     'schematic-resource-button-delete': HTMLSchematicResourceButtonDeleteElement;
     'schematic-resource-button-new': HTMLSchematicResourceButtonNewElement;
+    'schematic-resource-button-order': HTMLSchematicResourceButtonOrderElement;
     'schematic-resource-button-save': HTMLSchematicResourceButtonSaveElement;
     'schematic-resource-editor-status': HTMLSchematicResourceEditorStatusElement;
     'schematic-resource-editor-toolbar': HTMLSchematicResourceEditorToolbarElement;
@@ -762,6 +804,7 @@ declare global {
     'schematic-resource-list-link': HTMLSchematicResourceListLinkElement;
     'schematic-resource-list': HTMLSchematicResourceListElement;
     'schematic-resource-navigator': HTMLSchematicResourceNavigatorElement;
+    'schematic-resource-order': HTMLSchematicResourceOrderElement;
     'schematic-resource-repeater-delete': HTMLSchematicResourceRepeaterDeleteElement;
     'schematic-resource-repeatable': HTMLSchematicResourceRepeatableElement;
     'schematic-resource-repeater-button': HTMLSchematicResourceRepeaterButtonElement;

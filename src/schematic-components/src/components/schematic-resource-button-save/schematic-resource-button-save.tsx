@@ -5,7 +5,6 @@ import { ResourceButton } from '../../interfaces/ResourceButton';
     tag: 'schematic-resource-button-save',
     styleUrl: 'schematic-resource-button-save.scss'
 })
-
 export class ResourceButtonSave {
     @Event() updateCurrentResource: EventEmitter;
     @Prop() inProgress: string;

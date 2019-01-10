@@ -5,7 +5,6 @@ import { ResourceButton } from '../../interfaces/ResourceButton';
     tag: 'schematic-resource-button-delete',
     styleUrl: 'schematic-resource-button-delete.scss'
 })
-
 export class ResourceButtonDelete {
     @Event() deleteCurrentResouce: EventEmitter;
     @Prop() inProgress: string;

@@ -10,6 +10,7 @@ export class ResourceEditor {
     @State() editorClass: string;
     @State() loading: boolean;
     @State() html: string;
+    @State() showModal: boolean;
     @Prop() facets: string = '';
     @Prop() url: string;
     @Prop({ mutable: true, reflectToAttr: true }) resourceId: string;
@@ -57,6 +58,21 @@ export class ResourceEditor {
     onDeleteCurrentResouce(event: CustomEvent) {
         this.updateEditorStatus(event.detail.inProgress);
         this.deleteResource(this.resourceId, event.detail.completed);
+    }
+    
+    @Listen('orderResources')
+    onOrderResources() {
+        this.showModal = true;
+    }
+    
+    @Listen('resourceOrderSubmit')
+    onResourceOrderSubmit() {
+        this.showModal = false;
+    }
+
+    @Listen('resourceOrderClose')
+    onResourceOrderClose() {
+        this.showModal = false;
     }
 
     @Method()
@@ -253,6 +269,10 @@ export class ResourceEditor {
         } else if (this.editorHasResource() || this.editorMode === "create") {
             return (
                 <div class={this.editorClass}>
+                    {this.showModal
+                        ? <schematic-resource-order facets={this.facets} url={this.url}></schematic-resource-order>
+                        : ''
+                    }
                     <slot name="toolbar"></slot>
                     <div class="resource-editor__body">
                         <div class="resource-editor__content">
@@ -264,6 +284,10 @@ export class ResourceEditor {
         } else {
             return (
                 <div class={this.editorClass}>
+                    {this.showModal
+                        ? <schematic-resource-order facets={this.facets} url={this.url}></schematic-resource-order>
+                        : ''
+                    }
                     <slot name="toolbar"></slot> 
                     <div class="resource-editor__body">
                         <div class="resource-editor__content">

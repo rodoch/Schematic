@@ -59,6 +59,14 @@ export class ResourceExplorer {
             list.listResources(list.url);
         }
     }
+    
+    @Listen('resourceOrderSubmit')
+    onResourceOrderSubmit() {
+        const list = this.explorer.querySelector('schematic-resource-list');
+        if (list) {
+            list.listResources(list.url);
+        }
+    }
 
     @Listen('filterMenuToggle')
     onFilterMenuToggle() {

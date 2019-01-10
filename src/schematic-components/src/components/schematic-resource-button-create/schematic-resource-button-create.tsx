@@ -5,7 +5,6 @@ import { ResourceButton } from '../../interfaces/ResourceButton';
     tag: 'schematic-resource-button-create',
     styleUrl: 'schematic-resource-button-create.scss'
 })
-
 export class ResourceButtonCreate {
     @Event() createNewResource: EventEmitter;
     @Prop() inProgress: string;
