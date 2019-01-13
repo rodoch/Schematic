@@ -1,6 +1,6 @@
 ﻿namespace Schematic.Core
 {
-    interface IResourceNotification<T>
+    public interface IResourceNotification<T>
     {
     }
 }
