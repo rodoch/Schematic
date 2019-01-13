@@ -1,6 +1,8 @@
-﻿namespace Schematic.Core
+﻿using MediatR;
+
+namespace Schematic.Core
 {
-    public interface IResourceNotification<T>
+    public interface IResourceNotification<T> : INotification
     {
     }
 }
