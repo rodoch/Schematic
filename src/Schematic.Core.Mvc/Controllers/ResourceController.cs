@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -130,6 +129,8 @@ namespace Schematic.Core.Mvc
 
             var resourceCreatedEvent = new ResourceCreated<TResource>(resourceModel.Resource);
             await _mediator.Publish(resourceCreatedEvent);
+            var resourcePersistedEvent = new ResourcePersisted<TResource>();
+            await _mediator.Publish(resourcePersistedEvent);
 
             var controllerName = ControllerContext.RouteData.Values["controller"].ToString();
             return Created(Url.Action("ReadAsync", controllerName, new { id = newResourceID }), newResourceID);
@@ -204,7 +205,9 @@ namespace Schematic.Core.Mvc
             
             var resourceUpdatedEvent = new ResourceUpdated<TResource>(updatedResource);
             await _mediator.Publish(resourceUpdatedEvent);
-            
+            var resourcePersistedEvent = new ResourcePersisted<TResource>();
+            await _mediator.Publish(resourcePersistedEvent);
+
             var result = new ResourceModel<TResource>() 
             { 
                 ID = resourceModel.ID,
@@ -242,6 +245,8 @@ namespace Schematic.Core.Mvc
 
             var resourceDeletedEvent = new ResourceDeleted<TResource>(id);
             await _mediator.Publish(resourceDeletedEvent);
+            var resourcePersistedEvent = new ResourcePersisted<TResource>();
+            await _mediator.Publish(resourcePersistedEvent);
 
             return NoContent();
         }

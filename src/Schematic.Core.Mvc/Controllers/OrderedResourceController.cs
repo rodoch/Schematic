@@ -94,6 +94,8 @@ namespace Schematic.Core.Mvc
             
             var resourceOrderedEvent = new ResourceOrdered<TResource>();
             await _mediator.Publish(resourceOrderedEvent);
+            var resourcePersistedEvent = new ResourcePersisted<TResource>();
+            await _mediator.Publish(resourcePersistedEvent);
 
             return Ok();
         }

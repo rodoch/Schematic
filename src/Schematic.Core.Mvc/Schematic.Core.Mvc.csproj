@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.28</Version>
+    <Version>0.1.29</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Controller logic, view models and services for the Schematic CMS framework</Description>
@@ -30,7 +30,7 @@
     <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="9.4.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="NJsonSchema" Version="9.10.66" />
-    <PackageReference Include="Schematic.Core" Version="0.1.24" />
+    <PackageReference Include="Schematic.Core" Version="0.1.26" />
     <PackageReference Include="Schematic.Identity" Version="0.1.8" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
