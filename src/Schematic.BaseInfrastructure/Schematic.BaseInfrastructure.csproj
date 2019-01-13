@@ -20,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="Gaois.Localizer" Version="0.6.6-alpha" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
-    <PackageReference Include="Schematic.Core" Version="0.1.22" />
+    <PackageReference Include="Schematic.Core" Version="0.1.23" />
     <PackageReference Include="Schematic.Identity" Version="0.1.8" />
   </ItemGroup>
 
