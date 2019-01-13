@@ -2,7 +2,7 @@ using MediatR;
 
 namespace Schematic.Core
 {
-    public class ResourceDeleted<T> : INotification
+    public class ResourceDeleted<T> : INotification, IResourceNotification<T>
     {
         public ResourceDeleted(int resourceID)
         {
