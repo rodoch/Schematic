@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Schematic.Core</PackageId>
     <PackageTags>schematic;cms</PackageTags>
-    <Version>0.1.26</Version>
+    <Version>0.1.28</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Core entities, interfaces and settings for the Schematic CMS framework</Description>
