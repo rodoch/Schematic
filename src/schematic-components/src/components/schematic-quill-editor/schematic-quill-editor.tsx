@@ -1,7 +1,10 @@
 import { Component, Element, Event, EventEmitter, Prop, Watch } from '@stencil/core';
 import Quill from 'quill';
+import ExtendedLink from './extended-link.js';
+
 
 // Modifying but give credit to: https://raw.githubusercontent.com/KillerCodeMonkey/stencil-quill/master/src/components/quill/quill.tsx
+// TS Quill implementation: https://github.com/vanilla/vanilla/tree/818e6a6dc387dd47a0a9fa78c6899aebf6ba7ecb/plugins/rich-editor/src/scripts/quill
 @Component({
   tag: 'schematic-quill-editor',
   styleUrl: 'schematic-quill-editor.scss',
@@ -130,6 +133,8 @@ export class QuillEditor {
                 this.editorElement.style[key] = this.styles[key];
             });
         }
+
+        Quill.register({ 'formats/extended-link': ExtendedLink }, true);
 
         this.quillEditor = new Quill(this.editorElement, {
             modules: modules,
