@@ -14,12 +14,10 @@ export default class ExtendedLink extends Link {
     node.setAttribute('href', this.sanitize(value));
 
     for (const protocol of ExtendedLink.PROTOCOL_WHITELIST) {
-      if (value && value.length > 0) {
-        if (value.startsWith(protocol)) {
-          node.setAttribute('rel', 'noopener');
-          node.setAttribute('target', '_blank');
-          break;
-        }
+      if (value.startsWith(protocol)) {
+        node.setAttribute('rel', 'noopener');
+        node.setAttribute('target', '_blank');
+        break;
       }
     }
 
@@ -27,18 +25,7 @@ export default class ExtendedLink extends Link {
   }
 
   static formats(domNode: HTMLElement) {
-    const formats: any = {};
-    formats.href = domNode.getAttribute('href');
-
-    if (domNode.hasAttribute('rel')) {
-      formats.rel = domNode.getAttribute('rel');
-    }
-
-    if (domNode.hasAttribute('target')) {
-      formats.target = domNode.getAttribute('target');
-    }
-
-    return formats;
+    return domNode.getAttribute('href');
   }
 
   static sanitize(url: string) {
