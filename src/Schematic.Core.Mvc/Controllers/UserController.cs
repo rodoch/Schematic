@@ -13,7 +13,7 @@ namespace Schematic.Core.Mvc
 {
     [Route("{culture}/user")]
     [Authorize]
-    public class UserController<TUser> : Controller where TUser : ISchematicUser, new()
+    public class UserController<TUser> : Controller where TUser : class, ISchematicUser, new()
     {
         private readonly IPasswordValidatorService _passwordValidatorService;
         private readonly IPasswordHasherService<TUser> _passwordHasherService;
@@ -143,7 +143,7 @@ namespace Schematic.Core.Mvc
 
             var user = await _userRepository.ReadAsync(userSpecification);
 
-            if (user == null)
+            if (user is null)
             {
                 return NotFound();
             }
