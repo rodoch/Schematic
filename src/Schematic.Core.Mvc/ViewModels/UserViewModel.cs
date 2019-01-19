@@ -21,6 +21,8 @@ namespace Schematic.Core.Mvc
 
         public bool HasIdentity(int userID) => User.ID == userID;
 
-        public bool IsVerified() => User.PassHash.HasValue();
+        public bool IsNew { get => ID == 0; }
+
+        public bool IsVerified { get; set; }
     }
 }

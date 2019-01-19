@@ -86,7 +86,7 @@ namespace Schematic.Core.Mvc
                 userRole.DisplayTitle = role.DisplayTitle;
             }
             
-            string email = userModel.User.Email;
+            var email = userModel.User.Email;
 
             // validate user e-mail address
             if (email.HasValue())
@@ -151,7 +151,8 @@ namespace Schematic.Core.Mvc
             var result = new UserViewModel<TUser>() 
             { 
                 ID = id,
-                User = user
+                User = user,
+                IsVerified = user.PassHash.HasValue()
             };
 
             return PartialView("_Editor", result);
@@ -169,6 +170,11 @@ namespace Schematic.Core.Mvc
 
             var savedUser = await _userRepository.ReadAsync(userSpecification);
             var roles = await _userRoleRepository.ListAsync();
+
+            if (savedUser.PassHash.HasValue())
+            {
+                userModel.IsVerified = true;
+            }
 
             foreach (var userRole in userModel.User.Roles)
             {
@@ -252,7 +258,8 @@ namespace Schematic.Core.Mvc
             var result = new UserViewModel<TUser>() 
             { 
                 ID = userModel.ID,
-                User = updatedUser
+                User = updatedUser,
+                IsVerified = updatedUser.PassHash.HasValue()
             };
             
             return PartialView("_Editor", result);

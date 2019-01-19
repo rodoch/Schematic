@@ -36,7 +36,7 @@
 <body class="sign-in" style="">
     <nav class="sign-in__language-switcher">
         <schematic-language-switcher>
-            @foreach (var culture in LocOptions.Value.SupportedUICultures) 
+            @foreach (var culture in LocOptions.CurrentValue.SupportedUICultures) 
             {
                 <schematic-language-button base="@Url.Content("~/")" code="@culture.Name" 
                     text="@(culture.Name == ViewData["UiLocale"].ToString() ? culture.Name.ToUpper() : culture.NativeName)" 
