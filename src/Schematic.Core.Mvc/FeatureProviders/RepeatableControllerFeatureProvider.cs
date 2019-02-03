@@ -18,7 +18,7 @@ namespace Schematic.Core.Mvc
             {
                 var assembly = Assembly.Load(assemblyName);
                 var exportedTypes = assembly.GetExportedTypes()
-                    .Where(type => type.GetCustomAttributes<SchematicResourceAttribute>().Any());
+                    .Where(type => type.GetCustomAttributes<SchematicRepeatableAttribute>().Any());
                     
                 foreach (var type in exportedTypes) 
                 {

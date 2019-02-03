@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.32</Version>
+    <Version>0.1.33</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Controller logic, view models and services for the Schematic CMS framework</Description>
@@ -16,6 +16,7 @@
     <PackageProjectUrl>https://github.com/rodoch/Schematic/tree/master/src/Schematic.Core.Mvc/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/rodoch/Schematic/blob/master/LICENSE</PackageLicenseUrl>
     <PackageReleaseNotes>Prerelease</PackageReleaseNotes>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
