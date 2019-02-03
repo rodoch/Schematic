@@ -1,7 +1,8 @@
 import { Component, Element, State, Prop, Method, Watch, Event, EventEmitter } from '@stencil/core';
 
 @Component({
-    tag: 'schematic-resource-filters'
+    tag: 'schematic-resource-filters',
+    styleUrl: 'schematic-resource-filters.scss'
 })
 export class ResourceFilters {
     @Element() filters: HTMLStencilElement;
