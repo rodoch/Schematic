@@ -45,13 +45,13 @@ export class QuillEditor {
     @Prop() output: 'html' | 'text' | 'json' = 'html';
     @Prop() placeholder: string = 'Insert text here…';
     @Prop() readOnly: boolean;
-    @Prop() scrollingContainer: HTMLElement | string;
     @Prop() strict: boolean = true;
     @Prop() styles: any = {};
     @Prop() theme: string;
 
     quillEditor: any;
     editorElement: HTMLDivElement;
+    scrollingContainer: HTMLElement;
 
     private defaultModules = {
         toolbar: [
@@ -135,13 +135,15 @@ export class QuillEditor {
 
         Quill.register({ 'formats/extended-link': ExtendedLink }, true);
 
+        console.log(this.scrollingContainer);
+
         this.quillEditor = new Quill(this.editorElement, {
             modules: modules,
             placeholder: this.placeholder,
             readOnly: this.readOnly || false,
             theme: this.theme || 'snow',
             formats: this.formats,
-            bounds: this.bounds ? (this.bounds === 'self' ? this.editorElement : this.bounds) : document.body,
+            bounds: this.bounds ? this.bounds : this.scrollingContainer,
             strict: this.strict,
             scrollingContainer: this.scrollingContainer
         });
@@ -330,7 +332,9 @@ export class QuillEditor {
     render() {
         return ([
             <slot name="quill-toolbar" />,
-            <div quill-element ref={(el: HTMLDivElement) => this.editorElement = el}></div>
+            <div class="ql-scrolling-container" ref={(el: HTMLDivElement) => this.scrollingContainer = el}>
+                <div quill-element ref={(el: HTMLDivElement) => this.editorElement = el}></div>
+            </div>
         ]);
     }
 }

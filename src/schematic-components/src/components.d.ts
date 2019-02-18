@@ -106,7 +106,6 @@ export namespace Components {
     'output': 'html' | 'text' | 'json';
     'placeholder': string;
     'readOnly': boolean;
-    'scrollingContainer': HTMLElement | string;
     'strict': boolean;
     'styles': any;
     'theme': string;
@@ -137,7 +136,6 @@ export namespace Components {
     'output'?: 'html' | 'text' | 'json';
     'placeholder'?: string;
     'readOnly'?: boolean;
-    'scrollingContainer'?: HTMLElement | string;
     'strict'?: boolean;
     'styles'?: any;
     'theme'?: string;

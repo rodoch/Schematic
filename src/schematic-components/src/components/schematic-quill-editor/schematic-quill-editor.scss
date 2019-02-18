@@ -1,7 +1,10 @@
 
 @import "~quill/dist/quill.snow.css";
 
-.ql-container {
+.ql-scrolling-container {
+    max-height: 450px;
+    overflow: auto;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 1rem;
 }
 
@@ -32,6 +35,7 @@
 
     .ql-editor h2 {
         font-size: 1.35rem;
+        margin-top: 0.8rem;
     }
 
     .ql-editor h3 {
