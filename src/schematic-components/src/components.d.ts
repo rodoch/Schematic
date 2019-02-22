@@ -349,10 +349,12 @@ export namespace Components {
   }
 
   interface SchematicResourceRepeater {
+    'initialInstanceIndex': number;
     'minInstances': number;
     'sequenceRepeatables': () => void;
   }
   interface SchematicResourceRepeaterAttributes extends StencilHTMLAttributes {
+    'initialInstanceIndex'?: number;
     'minInstances'?: number;
   }
 
