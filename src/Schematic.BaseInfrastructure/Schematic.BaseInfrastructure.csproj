@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Schematic.BaseInfrastructure</PackageId>
     <PackageTags>schematic;cms;email</PackageTags>
-    <Version>0.1.11</Version>
+    <Version>0.1.12</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Base infrastructure services for the Schematic CMS framework</Description>
@@ -18,10 +18,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Gaois.Localizer" Version="0.6.9-alpha" />
+    <PackageReference Include="Gaois.Localizer" Version="0.6.10-alpha" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
-    <PackageReference Include="Schematic.Core" Version="0.1.29" />
-    <PackageReference Include="Schematic.Identity" Version="0.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Schematic.Core\Schematic.Core.csproj" />
+    <ProjectReference Include="..\Schematic.Identity\Schematic.Identity.csproj" />
   </ItemGroup>
 
 </Project>

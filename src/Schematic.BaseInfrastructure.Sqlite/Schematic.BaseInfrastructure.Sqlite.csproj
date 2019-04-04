@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Schematic.BaseInfrastructure.Sqlite</PackageId>
     <PackageTags>schematic;cms;infrastructure;sqlite</PackageTags>
-    <Version>0.1.22</Version>
+    <Version>0.1.23</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Sqlite implementation of Schematic CMS framework infrastructure</Description>
@@ -18,13 +18,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Dapper" Version="1.50.5" />
+    <PackageReference Include="Dapper" Version="1.60.6" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="2.1.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="2.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
-    <PackageReference Include="Schematic.Core" Version="0.1.29" />
-    <PackageReference Include="Schematic.Identity" Version="0.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Schematic.Core\Schematic.Core.csproj" />
+    <ProjectReference Include="..\Schematic.Identity\Schematic.Identity.csproj" />
   </ItemGroup>
 
 </Project>

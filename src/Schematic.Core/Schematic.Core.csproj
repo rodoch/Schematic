@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Schematic.Core</PackageId>
     <PackageTags>schematic;cms</PackageTags>
-    <Version>0.1.29</Version>
+    <Version>0.1.30</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Core entities, interfaces and settings for the Schematic CMS framework</Description>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ansa.Extensions" Version="0.2.5" />
+    <PackageReference Include="Ansa.Extensions" Version="0.2.6" />
     <PackageReference Include="MediatR" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />

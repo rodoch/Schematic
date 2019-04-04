@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.33</Version>
+    <Version>0.1.34</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Controller logic, view models and services for the Schematic CMS framework</Description>
@@ -21,8 +21,8 @@
 
   <ItemGroup>
     <PackageReference Include="AgileObjects.NetStandardPolyfills" Version="1.4.0" />
-    <PackageReference Include="Dapper" Version="1.50.5" />
-    <PackageReference Include="Dapper.Contrib" Version="1.50.5" />
+    <PackageReference Include="Dapper" Version="1.60.6" />
+    <PackageReference Include="Dapper.Contrib" Version="1.60.1" />
     <PackageReference Include="Dapper.SqlBuilder" Version="1.50.5" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.1" />
@@ -33,16 +33,14 @@
     <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="9.4.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
     <PackageReference Include="NJsonSchema" Version="9.10.66" />
-    <PackageReference Include="Schematic.Core" Version="0.1.29" />
-    <PackageReference Include="Schematic.Identity" Version="0.1.8" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0005" />
-    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0005" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.0-beta0006" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta0006" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-      <!--<ProjectReference Include="../Schematic.Core/Schematic.Core.csproj" />-->
-      <!--<ProjectReference Include="../Schematic.Identity/Schematic.Identity.csproj" />-->
+    <ProjectReference Include="..\Schematic.Core\Schematic.Core.csproj" />
+    <ProjectReference Include="..\Schematic.Identity\Schematic.Identity.csproj" />
   </ItemGroup>
 
 </Project>
