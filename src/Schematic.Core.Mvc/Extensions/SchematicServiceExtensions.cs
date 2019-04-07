@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 using Schematic.Identity;
+using Microsoft.Extensions.Localization;
 
 namespace Schematic.Core.Mvc
 {

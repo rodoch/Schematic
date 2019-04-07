@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.34</Version>
+    <Version>0.1.36</Version>
     <Authors>Ronan Doherty</Authors>
     <Company>Ronan Doherty</Company>
     <Description>Controller logic, view models and services for the Schematic CMS framework</Description>

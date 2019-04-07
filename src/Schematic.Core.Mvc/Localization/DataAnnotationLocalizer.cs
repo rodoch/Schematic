@@ -1,21 +1,19 @@
 using Microsoft.Extensions.Localization;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Reflection;
  
 namespace Schematic.Core.Mvc
 {
-    public class LocalizerService : IStringLocalizer
+    public class DataAnnotationLocalizer : IStringLocalizer
     {
         private readonly IStringLocalizer _resourceManagerStringLocalizer;
         private readonly IStringLocalizer _sharedLocalizer;
         
-        public LocalizerService(
-            IStringLocalizer resourceManagerStringLocalizerByType, 
-            IStringLocalizer sharedLocalizer)
+        public DataAnnotationLocalizer(Type type, Type sharedResourceType, IStringLocalizerFactory factory)
         {
-            _resourceManagerStringLocalizer = resourceManagerStringLocalizerByType;
-            _sharedLocalizer = sharedLocalizer;
+            _resourceManagerStringLocalizer = factory.Create(type);
+            _sharedLocalizer = factory.Create(sharedResourceType);
         }
  
         public LocalizedString this[string name]
