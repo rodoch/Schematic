@@ -17,22 +17,22 @@ namespace Schematic.Core.Mvc
 
         public void Apply(ControllerModel controller)
         {
-            if (controller.ControllerType.IsGenericType)
-            {
-                var genericType = controller.ControllerType.GenericTypeArguments[0];
-                var customNameAttribute = genericType.GetCustomAttribute<SchematicResourceAttribute>();
-                
-                controller.ControllerName = DetermineResourceControllerName(genericType, customNameAttribute);
-    
-                if (customNameAttribute != null && customNameAttribute.Route.HasValue())
-                {
-                    var routeAttribute = new RouteAttribute(customNameAttribute.Route);
+            if (!controller.ControllerType.IsGenericType)
+                return;
 
-                    controller.Selectors.Add(new SelectorModel
-                    {
-                        AttributeRouteModel = new AttributeRouteModel(routeAttribute),
-                    });
-                }
+            var genericType = controller.ControllerType.GenericTypeArguments[0];
+            var customNameAttribute = genericType.GetCustomAttribute<SchematicResourceAttribute>();
+                
+            controller.ControllerName = DetermineResourceControllerName(genericType, customNameAttribute);
+    
+            if (customNameAttribute != null && customNameAttribute.Route.HasValue())
+            {
+                var routeAttribute = new RouteAttribute(customNameAttribute.Route);
+
+                controller.Selectors.Add(new SelectorModel
+                {
+                    AttributeRouteModel = new AttributeRouteModel(routeAttribute),
+                });
             }
         }
     }

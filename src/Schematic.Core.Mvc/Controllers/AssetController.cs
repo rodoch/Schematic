@@ -54,16 +54,12 @@ namespace Schematic.Controllers
             FilePath = Path.Combine(_settings.CurrentValue.AssetDirectory, fileName);
 
             if (container.HasValue())
-            {
                 CloudContainerName = container;
-            }
 
             var provider = new FileExtensionContentTypeProvider();
 
             if (!provider.TryGetContentType(fileName, out string contentType))
-            {
                 contentType = "application/octet-stream";
-            }
 
             var downloadRequest = new AssetDownloadRequest()
             {
@@ -75,9 +71,7 @@ namespace Schematic.Controllers
             var stream = await _assetStorageService.GetAssetAsync(downloadRequest);
 
             if (stream is null)
-            {
                 return NotFound();
-            }
 
             if (attachment.HasValue() && attachment == "true")
             {
@@ -96,21 +90,17 @@ namespace Schematic.Controllers
             TotalSize = files.Sum(f => f.Length);
 
             if (container.HasValue())
-            {
                 CloudContainerName = container;
-            }
 
             foreach (var file in files)
             {
                 if (file.Length == 0)
-                {
                     continue;
-                }
 
                 var assetDirectory = _settings.CurrentValue.AssetDirectory;
                 var assetWebPath = _settings.CurrentValue.AssetWebPath;
                 FileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                FileName = (!string.IsNullOrWhiteSpace(FileName)) ? FileName : Convert.ToString(Guid.NewGuid());
+                FileName = (FileName.HasValue()) ? FileName : Convert.ToString(Guid.NewGuid());
                 FilePath = Path.Combine(assetDirectory, FileName);
 
                 var uploadRequest = new AssetUploadRequest()
@@ -129,9 +119,7 @@ namespace Schematic.Controllers
                     var saveImageAsset = await _assetStorageService.SaveAssetAsync(uploadRequest);
 
                     if (saveImageAsset != AssetUploadResult.Success)
-                    {
                         continue;
-                    }
 
                     // save image metadata to data store
                     image.FileName = this.FileName;
@@ -158,9 +146,7 @@ namespace Schematic.Controllers
                     var saveAsset = await _assetStorageService.SaveAssetAsync(uploadRequest);
 
                     if (saveAsset != AssetUploadResult.Success)
-                    {
                         continue;
-                    }
                     
                     // save file metadata to data store
                     var asset = new Asset()

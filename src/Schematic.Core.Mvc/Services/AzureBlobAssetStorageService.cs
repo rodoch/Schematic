@@ -1,6 +1,5 @@
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -21,17 +20,13 @@ namespace Schematic.Core.Mvc
             var storageConnectionString = _settings.CurrentValue.CloudStorage.AzureStorage.StorageAccount;
 
             if (!CloudStorageAccount.TryParse(storageConnectionString, out CloudStorageAccount storageAccount))
-            {
                 return null;
-            }
 
             var cloudBlobClient = storageAccount.CreateCloudBlobClient();
             var container = cloudBlobClient.GetContainerReference(containerName);
 
             if (!await container.ExistsAsync())
-            {
                 throw new StorageException();
-            }
 
             return container;
         }
@@ -42,9 +37,7 @@ namespace Schematic.Core.Mvc
             var blockBlob = container.GetBlockBlobReference(asset.FileName);
 
             if (!await blockBlob.ExistsAsync())
-            {
                 return null;
-            }
 
             using (var blobStream = blockBlob.OpenRead())
             {
@@ -64,9 +57,7 @@ namespace Schematic.Core.Mvc
                 var blockBlob = container.GetBlockBlobReference(asset.FileName);
 
                 using (var blobStream = asset.File.OpenReadStream())
-                {
                     await blockBlob.UploadFromStreamAsync(blobStream);
-                }
 
                 return AssetUploadResult.Success;
             }

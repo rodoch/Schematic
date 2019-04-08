@@ -2,12 +2,10 @@ using System;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Ansa.Extensions;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
-using Schematic.Core;
 
 namespace Schematic.Core.Mvc
 {
@@ -22,9 +20,7 @@ namespace Schematic.Core.Mvc
             }
 
             if (!path.EndsWith(@"/"))
-            {
                 path = path + "/";
-            }
 
             return path + fileName;
         }
@@ -62,14 +58,10 @@ namespace Schematic.Core.Mvc
                 using (var stream = file.OpenReadStream())
                 {
                     if (!stream.CanRead)
-                    {
                         return false;
-                    }
                     
                     if (file.Length < ImageMinimumBytes)
-                    {
                         return false;
-                    }
 
                     byte[] buffer = new byte[ImageMinimumBytes];
                     stream.Read(buffer, 0, ImageMinimumBytes);

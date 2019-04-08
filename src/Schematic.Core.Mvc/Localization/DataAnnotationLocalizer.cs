@@ -23,9 +23,7 @@ namespace Schematic.Core.Mvc
                 var result = _resourceManagerStringLocalizer.GetString(name);
 
                 if (result.ResourceNotFound)
-                {
                     result = _sharedLocalizer.GetString(name);
-                }
 
                 return result;
             }
@@ -38,9 +36,7 @@ namespace Schematic.Core.Mvc
                 var result = _resourceManagerStringLocalizer.GetString(name, arguments);
                 
                 if (result.ResourceNotFound)
-                {
                     result = _sharedLocalizer.GetString(name, arguments);
-                }
 
                 return result;
             }
@@ -62,9 +58,7 @@ namespace Schematic.Core.Mvc
             }
         }
  
-        public IStringLocalizer WithCulture(CultureInfo culture)
-        {
-            return _resourceManagerStringLocalizer.WithCulture(culture);
-        }
+        public IStringLocalizer WithCulture(CultureInfo culture) =>
+            _resourceManagerStringLocalizer.WithCulture(culture);
     }
 }

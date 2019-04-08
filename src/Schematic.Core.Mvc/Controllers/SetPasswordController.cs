@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -41,9 +40,11 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public IActionResult Authentication(string token)
         {
-            var data = new AuthenticationViewModel();
-            data.Mode = "set-password";
-            data.Token = token;
+            var data = new AuthenticationViewModel
+            {
+                Mode = "set-password",
+                Token = token
+            };
 
             return View("/Views/Authentication/Authentication.cshtml", data);
         }
@@ -52,8 +53,10 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public IActionResult SetPassword(string token)
         {
-            var data = new SetPasswordViewModel();
-            data.Token = token;
+            var data = new SetPasswordViewModel
+            {
+                Token = token
+            };
 
             return PartialView(data);
         }
@@ -66,9 +69,7 @@ namespace Schematic.Core.Mvc
             ViewData["Email"] = data.Email;
 
             if (!ModelState.IsValid)
-            {
                 return PartialView(data);
-            }
 
             if (!_emailValidatorService.IsValidEmail(data.Email))
             {
@@ -116,8 +117,8 @@ namespace Schematic.Core.Mvc
             {
                 ModelState.AddModelError(
                     key: "PasswordValidationErrors",
-                    errorMessage: _localizer[_passwordValidatorService.GetPasswordValidationErrorMessage()]
-                );
+                    errorMessage: _localizer[_passwordValidatorService.GetPasswordValidationErrorMessage()]);
+
                 return PartialView(data);
             }
 

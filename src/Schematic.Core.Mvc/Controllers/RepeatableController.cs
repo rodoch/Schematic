@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Schematic.Core;
 
 namespace Schematic.Core.Mvc
 {
@@ -14,14 +13,11 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public virtual IActionResult Create(string parent)
         {
-            if (!User.IsAuthorized(typeof(T))) 
-            {
+            if (!User.IsAuthorized(typeof(T)))
                 return Unauthorized();
-            }
 
-            string view = "~/Views/" + parent + "/EditorTemplates/" + ResourceType + ".cshtml";
-
-            return PartialView(view, new T());
+            var viewName = "~/Views/" + parent + "/EditorTemplates/" + ResourceType + ".cshtml";
+            return PartialView(viewName, new T());
         }
     }
 }

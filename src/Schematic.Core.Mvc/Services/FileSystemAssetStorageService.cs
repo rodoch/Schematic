@@ -1,7 +1,5 @@
 using System.IO;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Schematic.Core;
 
 namespace Schematic.Core.Mvc
 {
@@ -10,9 +8,7 @@ namespace Schematic.Core.Mvc
         public async Task<byte[]> GetAssetAsync(AssetDownloadRequest asset)
         {
             if (!File.Exists(asset.FilePath))
-            {
                 return null;
-            }
 
             using (var stream = new FileStream(asset.FilePath, FileMode.Open, FileAccess.Read))
             {

@@ -9,22 +9,20 @@ namespace Schematic.Core.Mvc
 {
     public class ResourceHandlerService
     {
-        private readonly List<Type> _resourceHandlerInterfaces;
-
         public ResourceHandlerService()
         {
-            _resourceHandlerInterfaces = GetResourceHandlerInterfaces();
+            ResourceHandlerInterfaces = GetResourceHandlerInterfaces();
         }
 
-        public List<Type> ResourceHandlerInterfaces { get => _resourceHandlerInterfaces; }
+        public List<Type> ResourceHandlerInterfaces { get; }
 
         private List<Type> GetResourceHandlerInterfaces()
         {
             return Assembly.GetEntryAssembly().GetTypes()
                 .Where(t => t.IsClass && !t.IsAbstract)
                 .SelectMany(t => t.GetInterfaces().Where(i => 
-                    i.IsClosedTypeOf(typeof(IRequestHandler<>)) || i.IsClosedTypeOf(typeof(IRequestHandler<,>)))
-                ).ToList();
+                    i.IsClosedTypeOf(typeof(IRequestHandler<>)) || i.IsClosedTypeOf(typeof(IRequestHandler<,>))))
+                .ToList();
         }
     }
 }

@@ -41,8 +41,10 @@ namespace Schematic.Core.Mvc
                 return RedirectToRoute("default");
             }
 
-            var data = new AuthenticationViewModel();
-            data.Mode = "sign-in";
+            var data = new AuthenticationViewModel
+            {
+                Mode = "sign-in"
+            };
 
             return View(data);
         }
@@ -52,9 +54,7 @@ namespace Schematic.Core.Mvc
         public IActionResult SignIn()
         {
             if (User.Identity.IsAuthenticated)
-            {
                 return RedirectToRoute("default");
-            }
 
             return PartialView();
         }
@@ -67,9 +67,7 @@ namespace Schematic.Core.Mvc
             ViewData["Email"] = data.Email;
             
             if (!ModelState.IsValid)
-            {
                 return PartialView();
-            }
 
             var userSpecification = new UserSpecification() { Email = data.Email };
             AuthenticationUser = await _userRepository.ReadAsync(userSpecification);
@@ -83,8 +81,7 @@ namespace Schematic.Core.Mvc
             var passwordVerification = _passwordHasherService.VerifyHashedPassword(
                     user: AuthenticationUser,
                     hashedPassword: AuthenticationUser.PassHash,
-                    providedPassword: SignInData.Password
-                );
+                    providedPassword: SignInData.Password);
 
             if (passwordVerification == PasswordVerificationResult.Failed)
             {
@@ -95,8 +92,7 @@ namespace Schematic.Core.Mvc
             var identity = new ClaimsIdentity(
                     authenticationType: CookieAuthenticationDefaults.AuthenticationScheme,
                     nameType: ClaimTypes.Name,
-                    roleType: ClaimTypes.Role
-                );
+                    roleType: ClaimTypes.Role);
 
             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, AuthenticationUser.ID.ToString()));
             identity.AddClaim(new Claim(ClaimTypes.Name, AuthenticationUser.FullName));
@@ -112,8 +108,7 @@ namespace Schematic.Core.Mvc
             await HttpContext.SignInAsync(
                 scheme: CookieAuthenticationDefaults.AuthenticationScheme,
                 principal: principal,
-                properties: new AuthenticationProperties { IsPersistent = data.RememberMe }
-            );
+                properties: new AuthenticationProperties { IsPersistent = data.RememberMe });
             
             return Json(new { Route = Url.RouteUrl("default") });
         }

@@ -20,16 +20,9 @@ namespace Schematic.Core.Mvc
                 .Where(type => type.GetCustomAttributes<SchematicResourceAttribute>().Where(a => !a.Ordered).Any());
             var schematicAssemblyExportedOrderedTypes = schematicAssembly.GetExportedTypes()
                 .Where(type => type.GetCustomAttributes<SchematicResourceAttribute>().Where(a => a.Ordered).Any());
-
-            foreach (var type in schematicAssemblyExportedTypes)
-            {
-                resources.Add(type);
-            }
-
-            foreach (var type in schematicAssemblyExportedOrderedTypes)
-            {
-                orderedResources.Add(type);
-            }
+            
+            resources.AddRange(schematicAssemblyExportedTypes);
+            orderedResources.AddRange(schematicAssemblyExportedOrderedTypes);
 
             // Get resources defined in referenced assemblies
             foreach (var assemblyName in schematicAssembly.GetReferencedAssemblies()) 
@@ -40,15 +33,8 @@ namespace Schematic.Core.Mvc
                 var exportedTypesOrdered = assembly.GetExportedTypes()
                     .Where(type => type.GetCustomAttributes<SchematicResourceAttribute>().Where(a => a.Ordered).Any());
                     
-                foreach (var type in exportedTypes) 
-                {
-                    resources.Add(type);
-                }
-
-                foreach (var type in exportedTypesOrdered)
-                {
-                    orderedResources.Add(type);
-                }
+                resources.AddRange(exportedTypes);
+                orderedResources.AddRange(exportedTypesOrdered);
             }
                 
             // Generate resource controllers
@@ -61,9 +47,7 @@ namespace Schematic.Core.Mvc
                 filterType = schematicAssembly.GetType("Schematic.Filters." + typeName + "Filter");
 
                 if (filterType is null)
-                {
                     filterType = typeof(ResourceFilter<>).MakeGenericType(resource).GetTypeInfo();
-                }
 
                 feature.Controllers.Add(typeof(ResourceController<,>)
                     .MakeGenericType(resource, filterType)
@@ -79,9 +63,7 @@ namespace Schematic.Core.Mvc
                 filterType = schematicAssembly.GetType("Schematic.Filters." + typeName + "Filter");
 
                 if (filterType is null)
-                {
                     filterType = typeof(ResourceFilter<>).MakeGenericType(resource).GetTypeInfo();
-                }
 
                 feature.Controllers.Add(typeof(OrderedResourceController<,>)
                     .MakeGenericType(resource, filterType)

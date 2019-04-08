@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using MediatR;
 using Schematic.Identity;
 
@@ -33,9 +32,7 @@ namespace Schematic.Core.Mvc
             var createPasswordToken = await _userPasswordRepository.CreatePasswordTokenAsync(notification.User, token);
 
             if (!createPasswordToken)
-            {
                 return;
-            }
 
             var emailSubject = _userInvitationEmail.Subject();
             var emailBody = _userInvitationEmail.Body(notification.User, domain, emailSubject, token);

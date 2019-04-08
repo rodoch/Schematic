@@ -41,8 +41,10 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public IActionResult Authentication()
         {
-            var data = new AuthenticationViewModel();
-            data.Mode = "forgot-password";
+            var data = new AuthenticationViewModel
+            {
+                Mode = "forgot-password"
+            };
 
             return View("/Views/Authentication/Authentication.cshtml", data);
         }
@@ -63,9 +65,7 @@ namespace Schematic.Core.Mvc
             ViewData["Email"] = data.Email;
             
             if (!ModelState.IsValid)
-            {
                 return PartialView(data);
-            }
 
             if (!_emailValidatorService.IsValidEmail(data.Email))
             {

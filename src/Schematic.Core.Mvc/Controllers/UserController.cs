@@ -92,9 +92,7 @@ namespace Schematic.Core.Mvc
             if (email.HasValue())
             {
                 if (!_emailValidatorService.IsValidEmail(email))
-                {
                     ModelState.AddModelError("InvalidEmail", _localizer[UserErrorMessages.InvalidEmail]);
-                }
 
                 var userSpecification = new UserSpecification()
                 {
@@ -104,23 +102,17 @@ namespace Schematic.Core.Mvc
                 var duplicateUser = await _userRepository.ReadAsync(userSpecification);
 
                 if (duplicateUser != null)
-                {
                     ModelState.AddModelError("DuplicateUser", _localizer[UserErrorMessages.DuplicateUser]);
-                }
             }
 
             if (!ModelState.IsValid)
-            {
                 return PartialView("_Editor", userModel);
-            }
 
             // persist new user to data store
             var newUserID = await _userRepository.CreateAsync(userModel.User, UserID);
 
             if (newUserID == 0)
-            {
                 return NoContent();
-            }
 
             // publish user creation and invitation events so notification services can be called
             userModel.User.ID = newUserID;
@@ -144,9 +136,7 @@ namespace Schematic.Core.Mvc
             var user = await _userRepository.ReadAsync(userSpecification);
 
             if (user is null)
-            {
                 return NotFound();
-            }
             
             var result = new UserViewModel<TUser>() 
             { 
@@ -172,9 +162,7 @@ namespace Schematic.Core.Mvc
             var roles = await _userRoleRepository.ListAsync();
 
             if (savedUser.PassHash.HasValue())
-            {
                 userModel.IsVerified = true;
-            }
 
             foreach (var userRole in userModel.User.Roles)
             {
@@ -188,18 +176,14 @@ namespace Schematic.Core.Mvc
             if (email.HasValue())
             {
                 if (!_emailValidatorService.IsValidEmail(email))
-                {
                     ModelState.AddModelError("InvalidEmail", _localizer[UserErrorMessages.InvalidEmail]);
-                }
 
                 if (email != savedUser.Email)
                 {
                     var duplicateUser = await _userRepository.ReadAsync(userSpecification);
 
                     if (duplicateUser != null)
-                    {
                         ModelState.AddModelError("DuplicateUser", _localizer[UserErrorMessages.DuplicateUser]);
-                    }
                 }
             }
 
@@ -224,8 +208,8 @@ namespace Schematic.Core.Mvc
                 {
                     ModelState.AddModelError(
                         key: "PasswordValidationErrors",
-                        errorMessage: _localizer[_passwordValidatorService.GetPasswordValidationErrorMessage()]
-                    );
+                        errorMessage: _localizer[_passwordValidatorService.GetPasswordValidationErrorMessage()]);
+
                     return PartialView("_Editor", userModel);
                 }
 
@@ -238,16 +222,12 @@ namespace Schematic.Core.Mvc
             }
 
             if (!ModelState.IsValid)
-            {
                 return PartialView("_Editor", userModel);
-            }
 
             var update = await _userRepository.UpdateAsync(userModel.User, UserID);
 
             if (update <= 0)
-            {
                 return BadRequest();
-            }
 
             var updatedUser = await _userRepository.ReadAsync(userSpecification);
 
@@ -272,9 +252,7 @@ namespace Schematic.Core.Mvc
             var deleteUser = await _userRepository.DeleteAsync(id, UserID);
 
             if (deleteUser <= 0)
-            {
                 return BadRequest();
-            }
 
             var userDeletedEvent = new UserDeleted(id);
             await _mediator.Publish(userDeletedEvent);
@@ -297,9 +275,7 @@ namespace Schematic.Core.Mvc
             var list = await _userRepository.ListAsync(filter);
 
             if (list.Count == 0)
-            {
                 return NoContent();
-            }
 
             var resourceList = new ResourceListModel<TUser>()
             {

@@ -31,10 +31,8 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public async virtual Task<IActionResult> GetOrderAsync(string facets = "")
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
 
             var model = new ResourceOrderModel<TResource>()
             {
@@ -44,9 +42,7 @@ namespace Schematic.Core.Mvc
             var resourceList = await _repository.GetOrderAsync(model);
 
             if (resourceList is null)
-            {
                 return NotFound();
-            }
 
             model.Resources = resourceList;
 
@@ -57,38 +53,28 @@ namespace Schematic.Core.Mvc
         [HttpPost]
         public async virtual Task<IActionResult> SetOrderAsync(ResourceOrderModel<TResource> resourceOrderModel)
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
             
             var orderResourceEvent = new OrderResource<TResource>(resourceOrderModel);
             var context = await _mediator.Send(orderResourceEvent);
 
             if (context != null)
-            {
                 resourceOrderModel = context;
-            }
 
             if (resourceOrderModel.Errors.Any())
             {
                 foreach (var error in resourceOrderModel.Errors)
-                {
                     ModelState.AddModelError(error.Key, error.Value);
-                }
             }
 
             if (!ModelState.IsValid)
-            {
                 return PartialView("_Order", resourceOrderModel);
-            }
 
             var update = await _repository.SetOrderAsync(resourceOrderModel);
 
             if (update <= 0)
-            {
                 return BadRequest();
-            }
 
             _logger.LogResourceOrdered(ResourceType);
             

@@ -20,11 +20,8 @@ namespace Schematic.Core.Mvc
                 var assembly = Assembly.Load(assemblyName);
                 var exportedTypes = assembly.GetExportedTypes()
                     .Where(type => type.GetCustomAttributes<SchematicUserAttribute>().Any());
-                    
-                foreach (var type in exportedTypes) 
-                {
-                    candidates.Add(type);
-                }
+                
+                candidates.AddRange(exportedTypes);
             }
             
             feature.Controllers.Add(typeof(UserController<>).MakeGenericType(candidates[0]).GetTypeInfo());

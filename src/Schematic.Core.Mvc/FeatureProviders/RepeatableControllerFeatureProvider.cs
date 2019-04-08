@@ -20,16 +20,11 @@ namespace Schematic.Core.Mvc
                 var exportedTypes = assembly.GetExportedTypes()
                     .Where(type => type.GetCustomAttributes<SchematicRepeatableAttribute>().Any());
                     
-                foreach (var type in exportedTypes) 
-                {
-                    candidates.Add(type);
-                }
+                candidates.AddRange(exportedTypes);
             }
                 
             foreach (var candidate in candidates)
-            {
                 feature.Controllers.Add(typeof(RepeatableController<>).MakeGenericType(candidate).GetTypeInfo());
-            }
         }
     }
 }

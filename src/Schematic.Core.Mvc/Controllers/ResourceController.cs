@@ -44,10 +44,8 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public virtual IActionResult Explorer(int id = 0, string name = "", string facets = "")
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
 
             var explorer = new ResourceExplorerModel()
             {
@@ -66,10 +64,8 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public async virtual Task<IActionResult> NewAsync(string facets = "")
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
             
             var resourceModel = new ResourceModel<TResource>() 
             {
@@ -81,9 +77,7 @@ namespace Schematic.Core.Mvc
             var context = await _mediator.Send(newResourceEvent);
 
             if (context != null)
-            {
                 resourceModel = context;
-            }
 
             return PartialView("_Editor", resourceModel);
         }
@@ -92,38 +86,28 @@ namespace Schematic.Core.Mvc
         [HttpPost]
         public async virtual Task<IActionResult> CreateAsync(ResourceModel<TResource> resourceModel)
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
             
             var createResourceEvent = new CreateResource<TResource>(resourceModel);
             var context = await _mediator.Send(createResourceEvent);
 
             if (context != null)
-            {
                 resourceModel = context;
-            }
 
             if (resourceModel.Errors.Any())
             {
                 foreach (var error in resourceModel.Errors)
-                {
                     ModelState.AddModelError(error.Key, error.Value);
-                }
             }
             
             if (!ModelState.IsValid)
-            {
                 return PartialView("_Editor", resourceModel);
-            }
 
             int newResourceID = await _repository.CreateAsync(resourceModel.Resource, UserID);
 
             if (newResourceID == 0)
-            {
                 return NoContent();
-            }
 
             _logger.LogResourceCreated(ResourceType, resourceModel.ID);
 
@@ -140,17 +124,13 @@ namespace Schematic.Core.Mvc
         [HttpGet("{id:int}")]
         public async virtual Task<IActionResult> ReadAsync(int id, string facets = "")
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
 
             var resource = await _repository.ReadAsync(id);
 
             if (resource is null)
-            {
                 return NotFound();
-            }
             
             var resourceModel = new ResourceModel<TResource>()
             { 
@@ -166,38 +146,28 @@ namespace Schematic.Core.Mvc
         [HttpPost]
         public async virtual Task<IActionResult> UpdateAsync(ResourceModel<TResource> resourceModel)
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
             
             var updateResourceEvent = new UpdateResource<TResource>(resourceModel);
             var context = await _mediator.Send(updateResourceEvent);
 
             if (context != null)
-            {
                 resourceModel = context;
-            }
 
             if (resourceModel.Errors.Any())
             {
                 foreach (var error in resourceModel.Errors)
-                {
                     ModelState.AddModelError(error.Key, error.Value);
-                }
             }
             
             if (!ModelState.IsValid)
-            {
                 return PartialView("_Editor", resourceModel);
-            }
 
             var update = await _repository.UpdateAsync(resourceModel.Resource, UserID);
 
             if (update <= 0)
-            {
                 return BadRequest();
-            }
 
             _logger.LogResourceUpdated(ResourceType, resourceModel.ID);
 
@@ -221,25 +191,19 @@ namespace Schematic.Core.Mvc
         [HttpPost]
         public async virtual Task<IActionResult> DeleteAsync(int id)
         {   
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
             
             var deleteResourceEvent = new DeleteResource<TResource>(id);
             var cancelDelete = await _mediator.Send(deleteResourceEvent);
 
             if (cancelDelete)
-            {
                 return Forbid();
-            }
 
             var delete = await _repository.DeleteAsync(id, UserID);
 
             if (delete <= 0)
-            {
                 return BadRequest();
-            }
 
             _logger.LogResourceDeleted(ResourceType, id);
 
@@ -255,10 +219,8 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public virtual IActionResult Filter(string facets = "")
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
 
             var filter = new TFilter()
             {
@@ -272,17 +234,13 @@ namespace Schematic.Core.Mvc
         [HttpPost]
         public async virtual Task<IActionResult> ListAsync(TFilter filter)
         {   
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
 
             var list = await _repository.ListAsync(filter);
 
             if (list.Count == 0)
-            {
                 return NoContent();
-            }
 
             var resourceList = new ResourceListModel<TResource>()
             {
@@ -297,10 +255,8 @@ namespace Schematic.Core.Mvc
         [HttpGet]
         public virtual async Task<IActionResult> SchemaAsync()
         {
-            if (!User.IsAuthorized(ResourceType)) 
-            {
+            if (!User.IsAuthorized(ResourceType))
                 return Unauthorized();
-            }
 
             var schema = await JsonSchema4.FromTypeAsync<TResource>();
             var schemaData = schema;

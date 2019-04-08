@@ -8,26 +8,22 @@ namespace Schematic.Core.Mvc
         private static Action<ILogger, string, int, Exception> _logResourceCreated = LoggerMessage.Define<string, int>(
             logLevel: LogLevel.Information,
             eventId: 1000,
-            formatString: "Resource created. Type: {type}. ID: {id}."
-        );
+            formatString: "Resource created. Type: {type}. ID: {id}.");
 
         private static Action<ILogger, string, int, Exception> _logResourceDeleted = LoggerMessage.Define<string, int>(
             logLevel: LogLevel.Information,
             eventId: 1001,
-            formatString: "Resource deleted. Type: {type}. ID: {id}."
-        );
+            formatString: "Resource deleted. Type: {type}. ID: {id}.");
         
         private static Action<ILogger, string, int, Exception> _logResourceUpdated = LoggerMessage.Define<string, int>(
             logLevel: LogLevel.Information,
             eventId: 1002,
-            formatString: "Resource updated. Type: {type}. ID: {id}."
-        );
+            formatString: "Resource updated. Type: {type}. ID: {id}.");
         
         private static Action<ILogger, string, Exception> _logResourceOrdered = LoggerMessage.Define<string>(
             logLevel: LogLevel.Information,
             eventId: 1003,
-            formatString: "Resource ordered. Type: {type}."
-        );
+            formatString: "Resource ordered. Type: {type}.");
 
         public static void LogResourceCreated(this ILogger logger, Type type, int id) => 
             _logResourceCreated(logger, type.Name, id, null);

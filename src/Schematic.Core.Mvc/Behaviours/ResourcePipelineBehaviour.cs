@@ -27,9 +27,7 @@ namespace Schematic.Core.Mvc
                 : typeof(IRequestHandler<,>).MakeGenericType(typeof(TRequest), resultType);
 
             if (!handlerInterfaces.Any(t => t == handlerType))
-            {
                 return default(TResponse);
-            }
 
             return await next();
         }
